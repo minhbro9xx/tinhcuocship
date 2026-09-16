@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="icon" href="https://i.ibb.co/FPHsdy9/dsa.png" type="image/png">
-    
     <link rel="apple-touch-icon" href="https://i.ibb.co/FPHsdy9/dsa.png">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -540,16 +539,14 @@
             flex-wrap: wrap;
         }
 
-        /* Tùy chỉnh phần hiển thị bảng Lịch sử cuộn dọc */
         .history-table-container {
-            max-height: 420px; /* Chiều cao tối đa để hiển thị khoảng 5 dòng */
-            overflow-y: auto; /* Hiển thị con lăn dọc */
+            max-height: 420px;
+            overflow-y: auto;
             overflow-x: auto;
             border-radius: 8px;
             border: 1px solid #dadce0;
         }
 
-        /* Custom thanh cuộn bảng lịch sử */
         .history-table-container::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -582,7 +579,6 @@
             border-right: none;
         }
 
-        /* Làm cho tiêu đề bảng cố định khi cuộn xuống */
         .history-table th {
             background-color: #e8f5e9;
             color: #1a7a40;
@@ -726,7 +722,7 @@
         @media screen and (max-width: 600px) {
             .history-table-container {
                 border: none;
-                max-height: 600px; /* Tăng chiều cao cuộn trên điện thoại do mỗi thẻ dài hơn */
+                max-height: 600px;
             }
             .history-table thead {
                 display: none;
@@ -1067,41 +1063,146 @@
                 </div>
             </div>
             
-            <div class="reference-table">
-                <div class="ref-row">
-                    <div class="ref-distance">0 - 2 km</div>
-                    <div class="ref-price">10.000đ</div>
-                </div>
-                <div class="ref-row">
-                    <div class="ref-distance">2,1 - 4 km</div>
-                    <div class="ref-price">15.000đ</div>
-                </div>
-                <div class="ref-row">
-                    <div class="ref-distance">4,1 - 6 km</div>
-                    <div class="ref-price">20.000đ</div>
-                </div>
-                <div class="ref-row">
-                    <div class="ref-distance">6,1 - 8 km</div>
-                    <div class="ref-price">25.000đ</div>
-                </div>
-                <div class="ref-row">
-                    <div class="ref-distance">8,1 - 9 km</div>
-                    <div class="ref-price">30.000đ</div>
-                </div>
-                <div class="ref-row" style="background-color: #e8f5e9; border-radius: 8px;">
-                    <div class="ref-distance">
-                        <svg style="width:16px;height:16px;fill:#f1922c;" viewBox="0 0 24 24"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                        ≥ 9,1 km trở lên
-                    </div>
-                    <div class="ref-price">x 5.000đ/km</div>
-                </div>
+            <div class="reference-table" id="reference-table-body">
+                <!-- Nội dung bảng giá quy định hiển thị tự động -->
             </div>
             
             <div class="surcharge-hint-card">
                 <svg style="width:28px;height:28px;fill:#f1922c;margin-top:2px;" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm-1 14h2v2h-2v-2zm0-6h2v4h-2v-4z"/></svg>
                 <div class="surcharge-hint-content">
-                    Lưu ý: Phụ phí <strong>+5.000đ/mục</strong><br/>
-                    được cộng trực tiếp vào tổng đơn.
+                    Lưu ý: Phụ phí sẽ được cộng trực tiếp vào tổng đơn theo giá cấu hình.
+                </div>
+            </div>
+        </section>
+
+        <!-- --- CÀI ĐẶT HỆ THỐNG --- -->
+        <section class="card" id="settings-card">
+            <div class="card-header" style="cursor: pointer;" onclick="toggleSettingsCard()">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg class="check-icon" viewBox="0 0 24 24" style="fill: #1a7a40;">
+                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                    </svg>
+                    <h2 class="card-title">Cài Đặt Hệ Thống</h2>
+                </div>
+                <svg id="settings-toggle-icon" style="width: 24px; height: 24px; fill: #5f6368; transition: transform 0.3s;" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+
+            <div id="settings-content-container" style="display: none; margin-top: 14px;">
+                <!-- SECTION 1: CẤU HÌNH MÃ QR THANH TOÁN -->
+                <div style="background: #fff; border: 1px solid #dadce0; border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+                    <h3 style="font-size: 0.95rem; font-weight: 700; color: #1a7a40; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1a7a40"><path d="M3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2zm12 4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H6v-1z"/></svg>
+                        Cài Đặt Mã QR Thanh Toán
+                    </h3>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div>
+                            <label style="font-size: 0.75rem; margin-bottom: 2px;">Ngân hàng / Mã ngân hàng (VietQR)</label>
+                            <select id="qr-bank-id" style="padding: 8px 10px; font-size: 0.85rem; width: 100%; border: 1.5px solid #dadce0; border-radius: 10px; outline: none; transition: all 0.2s ease; background-color: #fff; color: #000;">
+                                <option value="VPB">VPB - VPBank (Ngân hàng Việt Nam Thịnh Vượng)</option>
+                                <option value="MB">MB - MBBank (Ngân hàng Quân Đội)</option>
+                                <option value="VCB">VCB - Vietcombank (Ngân hàng Ngoại Thương)</option>
+                                <option value="TCB">TCB - Techcombank (Ngân hàng Kỹ Thương)</option>
+                                <option value="ICB">ICB - VietinBank (Ngân hàng Công Thương)</option>
+                                <option value="BIDV">BIDV - BIDV (Ngân hàng Đầu tư và Phát triển)</option>
+                                <option value="VBA">VBA - Agribank (Ngân hàng Nông nghiệp)</option>
+                                <option value="ACB">ACB - Ngân hàng Á Châu</option>
+                                <option value="TPB">TPB - TPBank (Ngân hàng Tiên Phong)</option>
+                                <option value="STB">STB - Sacombank (Ngân hàng Sài Gòn Thương Tín)</option>
+                                <option value="HDB">HDB - HDBank (Ngân hàng Phát triển TP.HCM)</option>
+                                <option value="VIB">VIB - Ngân hàng Quốc Tế</option>
+                                <option value="SHB">SHB - Ngân hàng Sài Gòn - Hà Nội</option>
+                                <option value="MSB">MSB - Ngân hàng Hàng Hải</option>
+                                <option value="OCB">OCB - Ngân hàng Phương Đông</option>
+                                <option value="SEAB">SEAB - SeABank (Ngân hàng Đông Nam Á)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; margin-bottom: 2px;">Số tài khoản</label>
+                            <input type="text" id="qr-account-no" placeholder="VD: 12345678983" style="padding: 8px 10px; font-size: 0.85rem; border: 1.5px solid #dadce0; border-radius: 10px; width: 100%;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; margin-bottom: 2px;">Tên chủ tài khoản (Không dấu)</label>
+                            <input type="text" id="qr-account-name" placeholder="VD: NGUYEN TRUONG MINH" style="padding: 8px 10px; font-size: 0.85rem; text-transform: uppercase; border: 1.5px solid #dadce0; border-radius: 10px; width: 100%;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; margin-bottom: 2px; color: #f1922c; font-weight: bold;">Link ảnh QR cố định (Tùy chọn)</label>
+                            <input type="text" id="qr-custom-url" placeholder="VD: https://link-anh-qr.png" style="padding: 8px 10px; font-size: 0.85rem; border: 1.5px solid #dadce0; border-radius: 10px; width: 100%;">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 14px;">
+                        <button type="button" onclick="previewQR()" class="btn-action" style="flex: 1; padding: 10px; font-size: 0.85rem; border-radius: 8px; background-color: #f1f3f4; color: #1a7a40; border: 1px solid #1a7a40; margin: 0; font-weight: bold;">
+                            👁️ Xem trước mã QR
+                        </button>
+                        <button type="button" onclick="saveQRConfig()" class="btn-confirm" style="flex: 1; font-size: 0.9rem; padding: 10px; width: auto; margin: 0; border-radius: 8px;">
+                            💾 Lưu Cấu Hình QR
+                        </button>
+                    </div>
+
+                    <div id="qr-preview-container" style="display: none; text-align: center; margin-top: 14px; background-color: #f8fafc; padding: 10px; border-radius: 8px; border: 1px dashed #dadce0;">
+                        <p style="font-size: 0.75rem; color: #5f6368; margin-bottom: 8px; font-weight: bold;">Ảnh xem trước (Minh họa phí 50.000đ):</p>
+                        <img id="qr-preview-img" src="" alt="Mã QR Preview" style="max-width: 100%; max-height: 250px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+
+                <!-- SECTION 2: PHỤ PHÍ -->
+                <div style="background: #fff; border: 1px solid #dadce0; border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="font-size: 0.95rem; font-weight: 700; color: #1a7a40; display: flex; align-items: center; gap: 6px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f1922c"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            Quản Lý Phụ Phí
+                        </h3>
+                        <button type="button" onclick="openAddSurchargeForm()" class="btn-action btn-save-target" style="padding: 6px 12px; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
+                            + Thêm Phụ Phí
+                        </button>
+                    </div>
+
+                    <!-- Form Thêm/Sửa Phụ phí -->
+                    <div id="surcharge-edit-form" style="display: none; background: #f8fafc; border: 1px dashed #1a7a40; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+                        <h4 id="surcharge-form-title" style="font-size: 0.85rem; color: #1a7a40; margin-bottom: 8px;">Thêm phụ phí mới</h4>
+                        <input type="hidden" id="surcharge-edit-id" value="">
+                        
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div>
+                                <label style="font-size: 0.75rem; margin-bottom: 2px;">Tên phụ phí (*)</label>
+                                <input type="text" id="surcharge-input-label" placeholder="VD: Hàng cồng kềnh" style="padding: 8px 10px; font-size: 0.85rem;">
+                            </div>
+                            
+                            <div style="display: flex; gap: 8px;">
+                                <div style="flex: 1;">
+                                    <label style="font-size: 0.75rem; margin-bottom: 2px;">Giá tiền (VNĐ) (*)</label>
+                                    <input type="number" id="surcharge-input-price" placeholder="5000" value="5000" style="padding: 8px 10px; font-size: 0.85rem;">
+                                </div>
+                                <div style="flex: 1;">
+                                    <label style="font-size: 0.75rem; margin-bottom: 2px;">Ghi chú / Mô tả</label>
+                                    <input type="text" id="surcharge-input-desc" placeholder="VD: trên 15kg" style="padding: 8px 10px; font-size: 0.85rem;">
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px;">
+                                <button type="button" onclick="cancelSurchargeForm()" class="btn-action btn-delete" style="padding: 6px 12px;">Hủy</button>
+                                <button type="button" onclick="saveSurchargeItem()" class="btn-action btn-save-target" style="padding: 6px 12px;">Lưu Phụ Phí</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách phụ phí -->
+                    <div id="surcharge-settings-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                </div>
+
+                <!-- SECTION 3: BẢNG GIÁ CƯỚC -->
+                <div style="background: #fff; border: 1px solid #dadce0; border-radius: 10px; padding: 14px; margin-bottom: 16px;">
+                    <h3 style="font-size: 0.95rem; font-weight: 700; color: #1a7a40; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1a7a40"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                        Thay Đổi Bảng Giá Cước Ship
+                    </h3>
+
+                    <div id="fare-settings-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+
+                    <button type="button" onclick="saveFareSettings()" class="btn-confirm" style="margin-top: 14px; font-size: 0.9rem; padding: 10px 16px; width: 100%;">
+                        💾 Lưu Bảng Giá Cước
+                    </button>
                 </div>
             </div>
         </section>
@@ -1128,11 +1229,11 @@
             </div>
 
             <div class="qr-image-container">
-                <img id="vietqr-img" src="" alt="Mã QR Thanh Toán VPBank">
+                <img id="vietqr-img" src="" alt="Mã QR Thanh Toán Ngân Hàng">
             </div>
             
             <div style="margin-top: 15px; padding: 12px; background: #f8fafc; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1px dashed #dadce0;">
-                <p style="font-size: 0.85rem; color: #333; margin: 0; text-align: left; flex: 1; line-height: 1.4;">
+                <p id="modal-copy-text" style="font-size: 0.85rem; color: #333; margin: 0; text-align: left; flex: 1; line-height: 1.4;">
                     Của anh/chị <span id="modal-copy-amount" style="font-weight: bold; color: #1a7a40;">0đ</span> - VPBank - 12345678983 - Nguyễn Trường Minh
                 </p>
                 <button onclick="copyPaymentMessage()" style="background: #1a7a40; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 4px; flex-shrink: 0; transition: background 0.2s;">
@@ -1215,28 +1316,185 @@
         const db = getFirestore(app);
         const ordersCol = collection(db, "orders");
 
-        const surcharges = [
-            { id: 'rain', label: 'Trời mưa / Nắng', desc: '' },
-            { id: 'summer', label: 'Sau 22h (hè)', desc: '' },
-            { id: 'winter', label: 'Sau 21h30 (đông)', desc: '' },
-            { id: 'heavy', label: 'Hàng 10 - 15kg', desc: '' },
-            { id: 'floor', label: 'Lên tầng / phòng', desc: '' },
-            { id: 'station', label: 'Gửi bến xe / nhà xe', desc: '' },
-            { id: 'cake', label: 'Bánh sinh nhật', desc: '(dễ vỡ)' }
+        // Cấu hình QR mặc định
+        let qrConfig = {
+            bankId: 'VPB',
+            accountNo: '12345678983',
+            accountName: 'Nguyen Truong Minh',
+            customUrl: ''
+        };
+
+        // Danh sách phụ phí mặc định
+        let surcharges = [
+            { id: 'rain', label: 'Trời mưa / Nắng', desc: '', price: 5000 },
+            { id: 'summer', label: 'Sau 22h (hè)', desc: '', price: 5000 },
+            { id: 'winter', label: 'Sau 21h30 (đông)', desc: '', price: 5000 },
+            { id: 'heavy', label: 'Hàng 10 - 15kg', desc: '', price: 5000 },
+            { id: 'floor', label: 'Lên tầng / phòng', desc: '', price: 5000 },
+            { id: 'station', label: 'Gửi bến xe / nhà xe', desc: '', price: 5000 },
+            { id: 'cake', label: 'Bánh sinh nhật', desc: '(dễ vỡ)', price: 5000 }
         ];
+
+        // Bảng giá cước mặc định
+        let fareRates = {
+            tiers: [
+                { minKm: 0, maxKm: 2, price: 10000 },
+                { minKm: 2.1, maxKm: 4, price: 15000 },
+                { minKm: 4.1, maxKm: 6, price: 20000 },
+                { minKm: 6.1, maxKm: 8, price: 25000 },
+                { minKm: 8.1, maxKm: 9, price: 30000 }
+            ],
+            overLimitRate: 5000
+        };
 
         let currentTotalFee = 0; 
         let historyData = [];
         let editingOrderId = null; 
         let itemToDeleteId = null; 
 
-        // Biến lưu trữ doanh thu hiện tại để render Progress Bar
         let currentDailyRevenueValue = 0;
         let currentMonthlyRevenueValue = 0;
 
-        // Biến quản lý Target (Mặc định trước khi tải từ Firebase)
         let dailyTarget = 500000;
         let monthlyTarget = 15000000;
+
+        // Tải cấu hình QR từ Firebase
+        async function loadQRConfigFromFirebase() {
+            try {
+                const docRef = doc(db, "settings", "qrConfig");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    qrConfig = docSnap.data();
+                } else {
+                    await setDoc(docRef, qrConfig);
+                }
+                
+                let savedBankId = qrConfig.bankId || 'VPB';
+                if (savedBankId === 'VPBank') savedBankId = 'VPB'; // Khả năng tương thích với dữ liệu cũ
+
+                document.getElementById('qr-bank-id').value = savedBankId;
+                document.getElementById('qr-account-no').value = qrConfig.accountNo || '12345678983';
+                document.getElementById('qr-account-name').value = qrConfig.accountName || 'Nguyen Truong Minh';
+                document.getElementById('qr-custom-url').value = qrConfig.customUrl || '';
+            } catch (error) {
+                console.error("Lỗi khi tải cấu hình QR:", error);
+            }
+        }
+
+        async function saveQRConfig() {
+            const bId = document.getElementById('qr-bank-id').value.trim();
+            const aNo = document.getElementById('qr-account-no').value.trim();
+            const aName = document.getElementById('qr-account-name').value.trim().toUpperCase();
+            const cUrl = document.getElementById('qr-custom-url').value.trim();
+
+            if (!cUrl && (!bId || !aNo || !aName)) {
+                alert("Vui lòng điền Link QR cố định HOẶC đầy đủ thông tin VietQR (Ngân hàng, STK, Tên)!");
+                return;
+            }
+
+            qrConfig = {
+                bankId: bId,
+                accountNo: aNo,
+                accountName: aName,
+                customUrl: cUrl
+            };
+
+            try {
+                const docRef = doc(db, "settings", "qrConfig");
+                await setDoc(docRef, qrConfig);
+                alert("Đã lưu thông tin mã QR thanh toán thành công!");
+                
+                // Cập nhật lại khung preview nếu đang hiển thị
+                if (document.getElementById('qr-preview-container').style.display === 'block') {
+                    previewQR();
+                }
+            } catch (error) {
+                console.error("Lỗi khi lưu cấu hình QR:", error);
+                alert("Không thể lưu cấu hình QR lên hệ thống!");
+            }
+        }
+        window.saveQRConfig = saveQRConfig;
+
+        function previewQR() {
+            const bId = document.getElementById('qr-bank-id').value.trim();
+            const aNo = document.getElementById('qr-account-no').value.trim();
+            const aName = document.getElementById('qr-account-name').value.trim();
+            const cUrl = document.getElementById('qr-custom-url').value.trim();
+            
+            const previewImg = document.getElementById('qr-preview-img');
+            const previewContainer = document.getElementById('qr-preview-container');
+
+            if (cUrl) {
+                previewImg.src = cUrl;
+            } else {
+                if (!bId || !aNo || !aName) {
+                    alert("Vui lòng nhập Ngân hàng, Số tài khoản và Tên chủ tài khoản để xem trước!");
+                    return;
+                }
+                const addInfo = encodeURIComponent('Thanh toan tien ship');
+                previewImg.src = `https://img.vietqr.io/image/${bId}-${aNo}-compact2.png?amount=50000&addInfo=${addInfo}&accountName=${encodeURIComponent(aName)}`;
+            }
+            previewContainer.style.display = 'block';
+        }
+        window.previewQR = previewQR;
+
+
+        // Tải Phụ phí từ Firebase
+        async function loadSurchargesFromFirebase() {
+            try {
+                const docRef = doc(db, "settings", "surcharges");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists() && docSnap.data().items) {
+                    surcharges = docSnap.data().items;
+                } else {
+                    await setDoc(docRef, { items: surcharges });
+                }
+            } catch (error) {
+                console.error("Lỗi khi tải phụ phí từ Firebase:", error);
+            }
+            generateSurcharges();
+            renderSurchargeSettingsList();
+            updateCalc();
+        }
+
+        async function saveSurchargesToFirebase() {
+            try {
+                const docRef = doc(db, "settings", "surcharges");
+                await setDoc(docRef, { items: surcharges });
+            } catch (error) {
+                console.error("Lỗi khi lưu phụ phí:", error);
+                alert("Lỗi khi lưu phụ phí lên cơ sở dữ liệu!");
+            }
+        }
+
+        // Tải Bảng Giá Cước từ Firebase
+        async function loadFareRatesFromFirebase() {
+            try {
+                const docRef = doc(db, "settings", "fareRates");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    fareRates = docSnap.data();
+                } else {
+                    await setDoc(docRef, fareRates);
+                }
+            } catch (error) {
+                console.error("Lỗi khi tải bảng giá cước:", error);
+            }
+            renderReferenceTable();
+            renderFareSettingsForm();
+            updateCalc();
+        }
+
+        async function saveFareRatesToFirebase() {
+            try {
+                const docRef = doc(db, "settings", "fareRates");
+                await setDoc(docRef, fareRates);
+                alert("Đã lưu cài đặt bảng giá cước thành công!");
+            } catch (error) {
+                console.error("Lỗi khi lưu bảng giá cước:", error);
+                alert("Không thể lưu giá cước lên hệ thống!");
+            }
+        }
 
         // Tải chỉ tiêu từ Firebase
         async function loadTargetsFromFirebase() {
@@ -1249,7 +1507,6 @@
                     if (data.dailyTarget) dailyTarget = data.dailyTarget;
                     if (data.monthlyTarget) monthlyTarget = data.monthlyTarget;
                 } else {
-                    // Tạo tài liệu lưu trữ lần đầu nếu chưa có
                     await setDoc(targetDocRef, {
                         dailyTarget: 500000,
                         monthlyTarget: 15000000
@@ -1262,9 +1519,199 @@
             }
         }
 
+        // --- HÀM CÀI ĐẶT PHỤ PHÍ & BẢNG GIÁ ---
+        function toggleSettingsCard() {
+            const container = document.getElementById('settings-content-container');
+            const icon = document.getElementById('settings-toggle-icon');
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                container.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        window.toggleSettingsCard = toggleSettingsCard;
+
+        function renderSurchargeSettingsList() {
+            const listEl = document.getElementById('surcharge-settings-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            if (surcharges.length === 0) {
+                listEl.innerHTML = '<div style="font-size:0.8rem; color:#888; text-align:center; padding:10px;">Chưa có phụ phí nào.</div>';
+                return;
+            }
+
+            surcharges.forEach((item) => {
+                const price = item.price !== undefined ? item.price : 5000;
+                const itemEl = document.createElement('div');
+                itemEl.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #f8fafc; border: 1px solid #dadce0; border-radius: 6px; font-size: 0.85rem;';
+                
+                itemEl.innerHTML = `
+                    <div>
+                        <strong style="color: #333;">${item.label}</strong>
+                        <span style="color: #e65100; font-weight: bold; margin-left: 6px;">+${formatVND(price)}</span>
+                        ${item.desc ? `<div style="font-size:0.75rem; color:#666;">${item.desc}</div>` : ''}
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button type="button" onclick="editSurchargeItem('${item.id}')" class="btn-action btn-edit" style="padding: 4px 8px;">Sửa</button>
+                        <button type="button" onclick="deleteSurchargeItem('${item.id}')" class="btn-action btn-delete" style="padding: 4px 8px;">Xóa</button>
+                    </div>
+                `;
+                listEl.appendChild(itemEl);
+            });
+        }
+
+        function openAddSurchargeForm() {
+            document.getElementById('surcharge-form-title').innerText = 'Thêm phụ phí mới';
+            document.getElementById('surcharge-edit-id').value = '';
+            document.getElementById('surcharge-input-label').value = '';
+            document.getElementById('surcharge-input-price').value = '5000';
+            document.getElementById('surcharge-input-desc').value = '';
+            document.getElementById('surcharge-edit-form').style.display = 'block';
+        }
+        window.openAddSurchargeForm = openAddSurchargeForm;
+
+        function cancelSurchargeForm() {
+            document.getElementById('surcharge-edit-form').style.display = 'none';
+        }
+        window.cancelSurchargeForm = cancelSurchargeForm;
+
+        function editSurchargeItem(id) {
+            const item = surcharges.find(s => s.id === id);
+            if (!item) return;
+            document.getElementById('surcharge-form-title').innerText = 'Sửa phụ phí: ' + item.label;
+            document.getElementById('surcharge-edit-id').value = item.id;
+            document.getElementById('surcharge-input-label').value = item.label || '';
+            document.getElementById('surcharge-input-price').value = item.price !== undefined ? item.price : 5000;
+            document.getElementById('surcharge-input-desc').value = item.desc || '';
+            document.getElementById('surcharge-edit-form').style.display = 'block';
+        }
+        window.editSurchargeItem = editSurchargeItem;
+
+        async function saveSurchargeItem() {
+            const id = document.getElementById('surcharge-edit-id').value;
+            const label = document.getElementById('surcharge-input-label').value.trim();
+            const price = parseInt(document.getElementById('surcharge-input-price').value) || 0;
+            const desc = document.getElementById('surcharge-input-desc').value.trim();
+
+            if (!label) {
+                alert('Vui lòng nhập tên phụ phí!');
+                return;
+            }
+
+            if (id) {
+                const index = surcharges.findIndex(s => s.id === id);
+                if (index !== -1) {
+                    surcharges[index] = { ...surcharges[index], label, price, desc };
+                }
+            } else {
+                const newId = 'sur_' + Date.now();
+                surcharges.push({ id: newId, label, price, desc });
+            }
+
+            cancelSurchargeForm();
+            generateSurcharges();
+            renderSurchargeSettingsList();
+            updateCalc();
+
+            await saveSurchargesToFirebase();
+        }
+        window.saveSurchargeItem = saveSurchargeItem;
+
+        async function deleteSurchargeItem(id) {
+            if (!confirm('Bạn có chắc chắn muốn xóa phụ phí này?')) return;
+            surcharges = surcharges.filter(s => s.id !== id);
+            generateSurcharges();
+            renderSurchargeSettingsList();
+            updateCalc();
+            await saveSurchargesToFirebase();
+        }
+        window.deleteSurchargeItem = deleteSurchargeItem;
+
+        function renderFareSettingsForm() {
+            const container = document.getElementById('fare-settings-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            fareRates.tiers.forEach((tier, idx) => {
+                const row = document.createElement('div');
+                row.style.cssText = 'display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #f8fafc; padding: 8px 10px; border-radius: 6px; border: 1px solid #dadce0;';
+                row.innerHTML = `
+                    <span style="font-size: 0.85rem; font-weight: 600; color: #333; flex: 1;">
+                        Quãng đường ${tier.minKm} - ${tier.maxKm} km:
+                    </span>
+                    <div style="display: flex; align-items: center; gap: 4px; width: 140px;">
+                        <input type="number" id="fare-tier-${idx}" value="${tier.price}" style="padding: 6px 8px; font-size: 0.85rem; text-align: right;">
+                        <span style="font-size: 0.8rem; font-weight: bold; color: #5f6368;">đ</span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            const overRow = document.createElement('div');
+            overRow.style.cssText = 'display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #e8f5e9; padding: 8px 10px; border-radius: 6px; border: 1px solid #c8e6c9;';
+            const lastMax = fareRates.tiers[fareRates.tiers.length - 1].maxKm;
+            overRow.innerHTML = `
+                <span style="font-size: 0.85rem; font-weight: 600; color: #1a7a40; flex: 1;">
+                    ≥ ${(lastMax + 0.1).toFixed(1)} km trở lên (mỗi km):
+                </span>
+                <div style="display: flex; align-items: center; gap: 4px; width: 140px;">
+                    <input type="number" id="fare-over-limit" value="${fareRates.overLimitRate}" style="padding: 6px 8px; font-size: 0.85rem; text-align: right;">
+                    <span style="font-size: 0.8rem; font-weight: bold; color: #1a7a40;">đ/km</span>
+                </div>
+            `;
+            container.appendChild(overRow);
+        }
+
+        async function saveFareSettings() {
+            fareRates.tiers.forEach((tier, idx) => {
+                const val = parseInt(document.getElementById(`fare-tier-${idx}`).value) || 0;
+                tier.price = val;
+            });
+
+            const overVal = parseInt(document.getElementById('fare-over-limit').value) || 5000;
+            fareRates.overLimitRate = overVal;
+
+            renderReferenceTable();
+            updateCalc();
+
+            await saveFareRatesToFirebase();
+        }
+        window.saveFareSettings = saveFareSettings;
+
+        function renderReferenceTable() {
+            const tableEl = document.getElementById('reference-table-body');
+            if (!tableEl) return;
+            tableEl.innerHTML = '';
+
+            fareRates.tiers.forEach(tier => {
+                const row = document.createElement('div');
+                row.className = 'ref-row';
+                row.innerHTML = `
+                    <div class="ref-distance">${tier.minKm.toString().replace('.', ',')} - ${tier.maxKm.toString().replace('.', ',')} km</div>
+                    <div class="ref-price">${formatVND(tier.price)}</div>
+                `;
+                tableEl.appendChild(row);
+            });
+
+            const lastTier = fareRates.tiers[fareRates.tiers.length - 1];
+            const overRow = document.createElement('div');
+            overRow.className = 'ref-row';
+            overRow.style.cssText = 'background-color: #e8f5e9; border-radius: 8px;';
+            overRow.innerHTML = `
+                <div class="ref-distance">
+                    <svg style="width:16px;height:16px;fill:#f1922c;" viewBox="0 0 24 24"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    ≥ ${(lastTier.maxKm + 0.1).toFixed(1).replace('.', ',')} km trở lên
+                </div>
+                <div class="ref-price">x ${formatVND(fareRates.overLimitRate)}/km</div>
+            `;
+            tableEl.appendChild(overRow);
+        }
+
         // --- CÁC HÀM CHO TARGET PROGRESS BARS ---
         function updateProgressBars() {
-            // Xử lý thanh tiến độ Ngày
             let dailyPercent = dailyTarget > 0 ? (currentDailyRevenueValue / dailyTarget) * 100 : 0;
             let displayDailyPercent = dailyPercent > 100 ? 100 : dailyPercent;
             
@@ -1277,7 +1724,6 @@
             document.getElementById('daily-target-text').innerText = formatVND(dailyTarget);
             document.getElementById('daily-percent').innerText = dailyPercent.toFixed(1) + '%';
             
-            // Xử lý thanh tiến độ Tháng
             let monthlyPercent = monthlyTarget > 0 ? (currentMonthlyRevenueValue / monthlyTarget) * 100 : 0;
             let displayMonthlyPercent = monthlyPercent > 100 ? 100 : monthlyPercent;
             
@@ -1295,7 +1741,6 @@
             const div = document.getElementById(`edit-${type}-target-div`);
             if (div.style.display === 'none' || div.style.display === '') {
                 div.style.display = 'flex';
-                // Load giá trị hiện tại vào ô input
                 document.getElementById(`${type}-target-input`).value = type === 'daily' ? dailyTarget : monthlyTarget;
             } else {
                 div.style.display = 'none';
@@ -1313,10 +1758,9 @@
                 monthlyTarget = newVal;
             }
             
-            toggleEditTarget(type); // Ẩn khung sửa
-            updateProgressBars();   // Render lại thanh tiến độ ngay lập tức
+            toggleEditTarget(type);
+            updateProgressBars();
 
-            // Lưu lên Firebase thay vì localStorage
             try {
                 const targetDocRef = doc(db, "settings", "targets");
                 await setDoc(targetDocRef, {
@@ -1328,7 +1772,6 @@
             }
         }
         window.saveTarget = saveTarget;
-
 
         // --- BIẾN VÀ HÀM CHO PIN PAD ---
         let currentPin = '';
@@ -1483,14 +1926,18 @@
 
         function generateSurcharges() {
             const container = document.getElementById('surcharge-group');
+            if (!container) return;
             container.innerHTML = '';
             surcharges.forEach(item => {
-                const labelText = item.desc ? `${item.label} <small style="font-weight:normal; opacity:0.85;">${item.desc}</small>` : item.label;
+                const itemPrice = item.price !== undefined ? item.price : 5000;
+                const priceBadge = `<small style="color:#e65100; font-weight:bold;">(+${formatVND(itemPrice)})</small>`;
+                const descText = item.desc ? `<small style="font-weight:normal; opacity:0.85;">${item.desc}</small>` : '';
+                
                 container.innerHTML += `
                     <label style="cursor: pointer;">
                         <input type="checkbox" id="chk-${item.id}" class="surcharge-checkbox" onchange="updateCalc()">
                         <span class="surcharge-pill">
-                            ${labelText}
+                            ${item.label} ${priceBadge} ${descText}
                         </span>
                     </label>
                 `;
@@ -1522,21 +1969,36 @@
             const checkedBoxes = document.querySelectorAll('#surcharge-group input[type="checkbox"]:checked');
             
             let selectedSurchargeLabels = [];
+            let surchargeFee = 0;
+
             checkedBoxes.forEach(box => {
                 const id = box.id.replace('chk-', '');
                 const labelObj = surcharges.find(s => s.id === id);
-                if(labelObj) selectedSurchargeLabels.push(labelObj.label);
+                if (labelObj) {
+                    const price = labelObj.price !== undefined ? labelObj.price : 5000;
+                    surchargeFee += price;
+                    selectedSurchargeLabels.push(`${labelObj.label} (+${formatVND(price)})`);
+                }
             });
 
+            // Tính cước theo Bảng giá tùy chỉnh
             let baseFee = 0;
-            if (distance <= 2) baseFee = 10000;
-            else if (distance <= 4) baseFee = 15000;
-            else if (distance <= 6) baseFee = 20000;
-            else if (distance <= 8) baseFee = 25000;
-            else if (distance <= 9) baseFee = 30000;
-            else baseFee = Math.round(distance * 5000);
-
-            const surchargeFee = checkedBoxes.length * 5000;
+            if (fareRates && fareRates.tiers && fareRates.tiers.length > 0) {
+                let matchedTier = fareRates.tiers.find(t => distance <= t.maxKm);
+                if (matchedTier) {
+                    baseFee = matchedTier.price;
+                } else {
+                    const overRate = fareRates.overLimitRate || 5000;
+                    baseFee = Math.round(distance * overRate);
+                }
+            } else {
+                if (distance <= 2) baseFee = 10000;
+                else if (distance <= 4) baseFee = 15000;
+                else if (distance <= 6) baseFee = 20000;
+                else if (distance <= 8) baseFee = 25000;
+                else if (distance <= 9) baseFee = 30000;
+                else baseFee = Math.round(distance * 5000);
+            }
             
             currentTotalFee = baseFee + surchargeFee + cod; 
             
@@ -1616,8 +2078,18 @@
         }
 
         function copyPaymentMessage() {
-            const amount = document.getElementById('modal-copy-amount').innerText;
-            const textToCopy = `Của anh/chị ${amount} - VPBank - 12345678983 - Nguyễn Trường Minh`;
+            const amount = formatVND(currentTotalFee);
+            const bId = qrConfig.bankId || 'VPB'; 
+            const accNo = qrConfig.accountNo || '12345678983'; 
+            const accName = qrConfig.accountName || 'Nguyen Truong Minh'; 
+            const cUrl = qrConfig.customUrl || '';
+            
+            let textToCopy = `Của anh/chị ${amount} - ${bId} - ${accNo} - ${accName}`;
+            
+            if (cUrl && (!accNo || !bId)) {
+                textToCopy = `Của anh/chị ${amount} - Vui lòng quét mã QR thanh toán.`;
+            }
+            
             navigator.clipboard.writeText(textToCopy).then(() => {
                 alert("Đã sao chép nội dung chuyển khoản!");
             }).catch(err => {
@@ -1648,7 +2120,6 @@
             });
             document.getElementById('daily-revenue-amount').innerText = formatVND(dailyTotalFee);
             
-            // Gán dữ liệu toàn cục và cập nhật thanh Target
             currentDailyRevenueValue = dailyTotalFee;
             updateProgressBars();
         }
@@ -1677,7 +2148,6 @@
             document.getElementById('monthly-shipping-fee').innerText = formatVND(totalFee);
             document.getElementById('monthly-order-count').innerText = orderCount;
 
-            // Gán dữ liệu toàn cục và cập nhật thanh Target
             currentMonthlyRevenueValue = totalFee;
             updateProgressBars();
         }
@@ -2032,16 +2502,28 @@
         btnOpen.onclick = function() {
             const amountStr = formatVND(currentTotalFee);
             document.getElementById('modalAmount').innerText = amountStr;
-            document.getElementById('modal-copy-amount').innerText = amountStr;
             
-            const bankId = 'VPBank'; 
-            const accountNo = '12345678983'; 
-            const accountName = 'Nguyen Truong Minh'; 
-            const amount = currentTotalFee; 
-            const addInfo = encodeURIComponent('Thanh toan tien ship'); 
+            const bId = qrConfig.bankId || 'VPB'; 
+            const accNo = qrConfig.accountNo || '12345678983'; 
+            const accName = qrConfig.accountName || 'NGUYEN TRUONG MINH'; 
+            const cUrl = qrConfig.customUrl || '';
             
-            const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-compact2.png?amount=${amount}&addInfo=${addInfo}&accountName=${encodeURIComponent(accountName)}`;
-            document.getElementById('vietqr-img').src = qrUrl;
+            // Cập nhật text trong modal
+            if (cUrl && (!accNo || !bId)) {
+                document.getElementById('modal-copy-text').innerHTML = `Của anh/chị <span id="modal-copy-amount" style="font-weight: bold; color: #1a7a40;">${amountStr}</span> - Vui lòng quét QR bên trên`;
+            } else {
+                document.getElementById('modal-copy-text').innerHTML = `Của anh/chị <span id="modal-copy-amount" style="font-weight: bold; color: #1a7a40;">${amountStr}</span> - ${bId} - ${accNo} - ${accName}`;
+            }
+
+            if (cUrl) {
+                document.getElementById('vietqr-img').src = cUrl;
+            } else {
+                const amount = currentTotalFee; 
+                const addInfo = encodeURIComponent('Thanh toan tien ship'); 
+                
+                const qrUrl = `https://img.vietqr.io/image/${bId}-${accNo}-compact2.png?amount=${amount}&addInfo=${addInfo}&accountName=${encodeURIComponent(accName)}`;
+                document.getElementById('vietqr-img').src = qrUrl;
+            }
 
             modal.style.display = "block";
             saveHistory();
@@ -2071,10 +2553,11 @@
         document.getElementById('stat-month').value = `${initialYyyy}-${initialMm}`;
         document.getElementById('stat-month').addEventListener('change', updateMonthlyStats);
 
-        // Khởi chạy khi load trang
-        generateSurcharges();
-        updateCalc();
-        loadTargetsFromFirebase(); // Load chỉ tiêu thay vì dùng localStorage
+        // Khởi chạy khi tải trang
+        loadSurchargesFromFirebase();
+        loadFareRatesFromFirebase();
+        loadTargetsFromFirebase();
+        loadQRConfigFromFirebase();
         listenToHistory();
     </script>
 </body>
